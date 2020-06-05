@@ -1,7 +1,4 @@
 /*
- * PNM image format
- * Copyright (c) 2002, 2003 Fabrice Bellard
- *
  * This file is part of FFmpeg.
  *
  * FFmpeg is free software; you can redistribute it and/or
@@ -19,21 +16,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef AVCODEC_PNM_H
-#define AVCODEC_PNM_H
+#ifndef AVCODEC_PACKET_INTERNAL_H
+#define AVCODEC_PACKET_INTERNAL_H
 
-#include "avcodec.h"
+#include <stdint.h>
 
-typedef struct PNMContext {
-    uint8_t *bytestream;
-    uint8_t *bytestream_start;
-    uint8_t *bytestream_end;
-    int maxval;                 ///< maximum value of a pixel
-    int type;
-    int endian;
-    float scale;
-} PNMContext;
+#include "packet.h"
 
-int ff_pnm_decode_header(AVCodecContext *avctx, PNMContext * const s);
+int ff_side_data_set_encoder_stats(AVPacket *pkt, int quality, int64_t *error, int error_count, int pict_type);
 
-#endif /* AVCODEC_PNM_H */
+int ff_side_data_set_prft(AVPacket *pkt, int64_t timestamp);
+
+#endif // AVCODEC_PACKET_INTERNAL_H
